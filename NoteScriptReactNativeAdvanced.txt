@@ -1,0 +1,192 @@
+**************************************************
+Advanced React Native Note Script
+**************************************************
+//--------------------------------------------------------------
+# วันที่ 1
+//--------------------------------------------------------------
+ตรวจสอบความพร้อมของเครื่องมือ
+
+VS Code
+---
+$ code -v
+
+Node JS
+---
+$ node -v
+$ npm -v
+$ npx -v
+
+Git
+---
+$ git  version
+
+Java JDK
+---
+$ java -version
+$ set JAVA_HOME
+
+Android SDK
+---
+$ android list target  (Windows)
+$ avdmanager list target (MacOS)
+
+MySQL
+---
+$ mysql -u root -p
+$ mysql -P 3333 -u root -p
+
+ADB Devices
+---
+$ adb devices
+
+ตรวจสอบเวอร์ชั่น React Native CLI
+---
+$ react-native -v
+
+ถอน React Native CLI เวอร์ชั่นปัจจุบันออก
+---
+$ npm uninstall -g react-native-cli
+
+ติดตั้ง React Native CLI
+---
+$ npm install -g react-native-cli
+
+บน MacOS
+---
+$ sudo npm install -g react-native-cli
+
+---------------------------------------------------------------
+การสร้าง App ด้วย React Native CLI
+---------------------------------------------------------------
+Step 0: เปลี่ยน path ไปยังโฟลเดอร์ AdvancedReactNative
+---
+cd G:\TrainingWorkshop\AdvancedReactNative
+
+Step 1: คำสั่งขึ้นโปรเจ็กต์ใหม่
+---
+$ react-native init ch1Animation --version 0.64.3 หรือ
+$ npx react-native init ch1Animation --version 0.64.3
+
+Step 2: เปิดเข้า VS Code
+---
+$ code ch1Animation -r
+
+Step 3: Start Metro
+---
+$ npm start หรือ
+$ npx react-native start
+
+*** หาก port 8081 ไม่ว่างให้ทำการเคลียร์ก่อน
+$ taskkill /F /IM node.exe  (Windows)
+
+$ ps aux | grep node (MacOS)
+$ kill -9 PID  (MacOS)
+
+Step 4: Run Application
+---
+Android
+---
+$ npm run android หรือ 
+$ npx react-native run-android
+
+iOS
+---
+$ npm run ios หรือ
+$ npx react-native run-ios
+
+Note:: การ Config Eslint (.eslintrc.js)
+---
+module.exports = {
+  root: true,
+  semi: [2, "never"],
+  extends: '@react-native-community',
+}
+
+Note:: การ Config Prettier (.prettierrc.js)
+---
+module.exports = {
+  bracketSpacing: true,
+  jsxBracketSameLine: true,
+  singleQuote: true,
+  trailingComma: 'all',
+  arrowParens: 'avoid',
+  tabWidth: 2,
+  semi: false,
+}
+
+Step 5: ติดตั้ง Dependency สำหรับทำ Navigation Stack พื้นฐาน
+---
+จำเป็น
+---
+npm install @react-navigation/native@6.0.8
+npm install @react-navigation/stack@6.1.1
+npm install react-native-screens@3.13.1
+npm install react-native-safe-area-context@4.2.1
+npm install react-native-reanimated@2.2.2
+npm install react-native-gesture-handler@1.10.3
+
+Step 6: ปรับ compileSdkVersion ให้เป็น 30
+---
+android\build.gradle
+---
+    ext {
+        buildToolsVersion = "29.0.3"
+        minSdkVersion = 21
+        compileSdkVersion = 30
+        targetSdkVersion = 29
+        ndkVersion = "20.1.5948944"
+    }
+
+
+Step 7: ตั้ง Dependency สำหรับทำ Navigation BottomTabs
+---
+npm install @react-navigation/bottom-tabs@6.2.0
+
+Step 8: ตั้ง Dependency สำหรับทำ Drawer
+---
+npm install @react-navigation/drawer@6.1.7
+
+Step 9: ติดตั้ง Dependency สำหรับใช้ภาพ Icon
+npm install react-native-vector-icons@9.1.0
+
+ตัวอย่างการวางโครงสร้างโฟลเดอร์และไฟล์โปรเจ็กต์
+----
+ch1Animation
+    __tests__
+    .bundle
+    .git
+    .vscode
+    android
+    ios
+    node_modules
+    src
+        |-- assets
+            |-- images
+        |-- components
+        |-- context
+        |-- model
+        |-- navigations
+            |-- AppStack.js
+            |-- Navigation.js
+            |-- RootStack.js
+        |-- screens
+            |-- AnimateAPI.js
+            |-- Home.js
+        |-- themes
+            |-- MainTheme.js
+    .buckconfig
+    .eslintrc.js
+    .flowconfig
+    .gitignore
+    .prettierrc.js
+    .ruby-version
+    .watchmanconfig
+    App.js
+    app.json
+    babel.config.js
+    Gemfile
+    Gemfile.lock
+    index.js
+    metro.config.js
+    package-lock.json
+    package.json
